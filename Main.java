@@ -34,7 +34,12 @@ class Main {
         assert fraction_test_compareTo_2.compareTo(fraction_test_compareTo_1) == -1;
         assert fraction_test_compareTo_2.compareTo(fraction_test_compareTo_2) == 0;
         //
-
+        // Test extension of Fraction by abstract class Number
+        Number aNumber = java.math.BigDecimal.ONE;
+        Number anotherNumber = new Fraction(1, 2);
+        assert java.lang.Math.abs(aNumber.doubleValue() + anotherNumber.doubleValue() - 1.5) < 1E-8;
+        //
+        
         System.out.println("ça compile");
     }
 }
