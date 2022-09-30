@@ -1,4 +1,4 @@
-public class Fraction {
+public class Fraction extends Number{
     private final int DENOMINATOR;
     private final int NUMERATOR; 
 
@@ -37,6 +37,31 @@ public class Fraction {
      */
     public double doubleValue(){
         return this.NUMERATOR/this.DENOMINATOR ;
+    }
+
+    /*
+     * @return the instance in the form of a float value
+     */
+    public float floatValue(){
+        return this.NUMERATOR/this.DENOMINATOR ;
+    }
+
+    /*
+     * @return the instance in the form of a long value 
+     * Be aware that if the result of the current fraction is not a natural
+     * number, this method will return you the floored value.
+     */
+    public long longValue(){
+        return this.NUMERATOR/this.DENOMINATOR;
+    }
+
+    /*
+     * @return the instance in the form of a int value 
+     * Be aware that if the result of the current fraction is not a natural
+     * number, this method will return you the floored value.
+     */
+    public int intValue(){
+        return this.NUMERATOR/this.DENOMINATOR;
     }
 
     /*
