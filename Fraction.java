@@ -19,7 +19,7 @@ public class Fraction extends Number{
         this.DENOMINATOR = 1;
         this.NUMERATOR = 0;
     }
-
+    @Override
     public String toString(){
         return this.NUMERATOR + "/" + this.DENOMINATOR ;
     }
@@ -32,41 +32,45 @@ public class Fraction extends Number{
         return this.DENOMINATOR;
     }
 
-    /*
+    /**
      * @return the instance in the form of a double value 
      */
+    @Override
     public double doubleValue(){
         return this.NUMERATOR/this.DENOMINATOR ;
     }
 
-    /*
+    /**
      * @return the instance in the form of a float value
      */
+    @Override
     public float floatValue(){
         return this.NUMERATOR/this.DENOMINATOR ;
     }
 
-    /*
+    /**
      * @return the instance in the form of a long value 
      * Be aware that if the result of the current fraction is not a natural
      * number, this method will return you the floored value.
      */
+    @Override
     public long longValue(){
         return this.NUMERATOR/this.DENOMINATOR;
     }
 
-    /*
+    /**
      * @return the instance in the form of a int value 
      * Be aware that if the result of the current fraction is not a natural
      * number, this method will return you the floored value.
      */
+    @Override
     public int intValue(){
         return this.NUMERATOR/this.DENOMINATOR;
     }
 
-    /*
+    /**
      * add the current instance with another instance
-     * @param fraction, an instance of Fraction
+     * @param fraction an instance of Fraction
      * @return the reduced fraction of the sum
      */
     public Fraction add(Fraction fraction){
@@ -79,27 +83,41 @@ public class Fraction extends Number{
         return summed_fraction_reduced;
     }
 
-    /*
+    /**
      * check if the instanciation is equal to another
-     * @param fraction, an instance of Fraction
+     * @param fraction an instance of Fraction
      */
-    public boolean isEqual(Fraction fraction){
-        int fraction_pgcd = Pgcd.pgcd(fraction.getDenominator(), fraction.getNumerator());
-        int this_pgcd = Pgcd.pgcd(this.DENOMINATOR, this.NUMERATOR);
-
-        if (this.getDenominator()/this_pgcd == fraction.getDenominator()/fraction_pgcd 
-            && this.getNumerator()/this_pgcd == fraction.getNumerator()/fraction_pgcd)
-        {
+    @Override
+    public boolean equals(Object other){
+        if (this == other){
             return true;
         }
-        else{
-            return false;
+        if (other instanceof Fraction){
+            Fraction fraction = (Fraction)other ; 
+            int fraction_pgcd = Pgcd.pgcd(fraction.getDenominator(), fraction.getNumerator());
+            int this_pgcd = Pgcd.pgcd(this.DENOMINATOR, this.NUMERATOR);
+
+            if (this.getDenominator()/this_pgcd == fraction.getDenominator()/fraction_pgcd 
+                && this.getNumerator()/this_pgcd == fraction.getNumerator()/fraction_pgcd)
+            {
+                return true;
+            }
         }
+        return false ;
     }
 
-    /*
+    /**
+     * Gets a hashCode for the fraction.
+     * @return a hash code value for this object
+     */
+    @Override
+    public int hashCode() {
+        return 37 * (37 * 17 + this.NUMERATOR) + this.DENOMINATOR;
+    }
+
+    /**
      * check the order relation between this instanciation and another.
-     * @param fraction, an instance of Fraction
+     * @param fraction an instance of Fraction
      * @return -1 if the instance is strictly inferior than fraction
      *         0 if the instance is equal to fraction
      *         1 if the instance is strictly superior than fraction
